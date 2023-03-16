@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject tutorialText;
     [SerializeField] GameObject endImage;
     [SerializeField] Text textEndGame;
+    public Image border1;
+    public Image handle1;
 
 
 
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour
         FadeInOut();
         LeanTween.delayedCall(2, () => { AnimTutorialTextIn(); });
     }
+
     public void AnimTutorialTextOut()
     {
         LeanTween.moveLocalY(tutorialText, -500, 2).setEaseInOutBack();
@@ -54,4 +58,5 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(0.08f);
         }
     }
+
 }
