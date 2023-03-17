@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class FixedJoystick : Joystick
 {
-    [SerializeField] Image borderImg;
-    [SerializeField] Image handleImg;
-
     bool ondrag;
     private void Update()
     {
@@ -17,15 +14,15 @@ public class FixedJoystick : Joystick
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        borderImg.color = new Color(255, 255, 255, 0.1f);
-        handleImg.color = new Color(255, 255, 255, 0.1f);
+        UIManager.INS.border1.color = new Color(255, 255, 255, 0.1f);
+        UIManager.INS.handle1.color = new Color(255, 255, 255, 0.1f);
         ondrag = true;
         base.OnPointerDown(eventData);
     }
     public override void OnPointerUp(PointerEventData eventData)
     {
-        borderImg.color = new Color(255, 255, 255, 0f);
-        handleImg.color = new Color(255, 255, 255, 0f);
+        UIManager.INS.border1.color = new Color(255, 255, 255, 0f);
+        UIManager.INS.handle1.color = new Color(255, 255, 255, 0f);
         ondrag = false;
         base.OnPointerUp(eventData);
     }
