@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] Animator camAnim;
     [SerializeField] PlayerController player;
     public static bool switchScene = true;
+    public bool invert = false;
 
     public Transform startPosPlayerRef; 
 
@@ -49,11 +50,16 @@ public class SceneController : MonoBehaviour
 
     public void SceneOn3D()
     {
+        if (invert) 
+        for (int i = 0; i < layersScene.Length; i++)
+        {
+            layersScene[i].position = new Vector3(layersScene[i].position.x, layersScene[i].position.y, i);
+        }
+        else
         for (int i = 0; i < layersScene.Length; i++)
         {
             layersScene[i].position = new Vector3(layersScene[i].position.x, layersScene[i].position.y, -i);
         }
-
         camAnim.Play("cam2");
     }
     public void SceneOff3D()
