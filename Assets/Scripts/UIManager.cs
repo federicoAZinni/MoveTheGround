@@ -11,8 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject tutorialText;
     [SerializeField] GameObject endImage;
     [SerializeField] Text textEndGame;
-    public Image border1;
-    public Image handle1;
+    
 
 
 
