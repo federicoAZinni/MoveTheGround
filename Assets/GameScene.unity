@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4466,7 +4466,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406461323}
-  m_LocalRotation: {x: 0.070078306, y: -0.2183271, z: 0.01572085, w: 0.9732293}
+  m_LocalRotation: {x: 0.0700783, y: -0.21832709, z: 0.01572085, w: 0.9732293}
   m_LocalPosition: {x: 5.4, y: 1.8499999, z: -1.4300003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5383,7 +5383,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840305232}
-  m_LocalRotation: {x: 0.18845868, y: 0.17985216, z: -0.035130125, w: 0.96483284}
+  m_LocalRotation: {x: 0.18845865, y: 0.17985211, z: -0.035130117, w: 0.96483284}
   m_LocalPosition: {x: -2.75, y: 3.12, z: 2.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5758,7 +5758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1986756414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6068,7 +6068,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2929252283571655136}
   m_LocalRotation: {x: 0.000000014677026, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2880.0022}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6078,7 +6078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 61179.99, y: 74553.6}
+  m_AnchoredPosition: {x: 441.1, y: 155.8}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2929252283571655138

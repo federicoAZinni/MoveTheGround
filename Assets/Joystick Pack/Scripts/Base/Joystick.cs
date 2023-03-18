@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class Joystick : MonoBehaviour, IPointerDownHandler
 {
     public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
     public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }
@@ -63,10 +63,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        OnDrag(eventData);
+        
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrag(Vector2 pos)
     {
         cam = null;
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
@@ -74,7 +74,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
         Vector2 position = RectTransformUtility.WorldToScreenPoint(cam, background.position);
         Vector2 radius = background.sizeDelta / 2;
-        input = (eventData.position - position) / (radius * canvas.scaleFactor);
+        input = (pos - position) / (radius * canvas.scaleFactor);
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
@@ -133,7 +133,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         return 0;
     }
 
-    public virtual void OnPointerUp(PointerEventData eventData)
+    public virtual void Repos()
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
