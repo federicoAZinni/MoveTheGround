@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,17 +15,33 @@ public class UIManager : MonoBehaviour
     public Image border1;
     public Image handle1;
 
+    [SerializeField] Button changePespective;
+    [SerializeField] Text buttonTextPerspective;
+    bool perspective;
+    [SerializeField] Button jump;
 
+    public static Action OnChangePerspective;
+    public static Action OnJump;
 
     private void Awake()
     {
         INS = this;
+        changePespective.onClick.AddListener(() => {
+            OnChangePerspective?.Invoke();
+            if (perspective) buttonTextPerspective.text = "3D";
+            else buttonTextPerspective.text = "2D";
+            perspective = !perspective;
+        });
+        jump.onClick.AddListener(() => {
+            OnJump?.Invoke();
+        });
     }
     private void Start()
     {
         FadeInOut();
         LeanTween.delayedCall(2, () => { AnimTutorialTextIn(); });
     }
+
 
     public void AnimTutorialTextOut()
     {

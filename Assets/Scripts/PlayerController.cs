@@ -21,6 +21,14 @@ public class PlayerController : MonoBehaviour
 
     bool blockInputs;
 
+    private void OnEnable()
+    {
+        UIManager.OnJump += Jump;
+    }
+    private void OnDisable()
+    {
+        UIManager.OnJump -= Jump;
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,14 +64,21 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
 
-        if (Input.GetKeyDown(KeyCode.Space) && jump)
-        {
-            LeanTween.delayedCall(0.2f, () => { rb.AddForce(Vector3.up * force, ForceMode.Impulse); });
+        
+    }
 
+    private void Jump()
+    {
+        if (jump)
+        {
             anim.SetBool("isGround", false);
             anim.SetTrigger("Jump");
             jump = false;
         }
+    }
+    public void JumpAnimEvent()
+    {
+        rb.AddForce(Vector3.up * force, ForceMode.Impulse);
     }
 
     public void ReposPlayer2D()

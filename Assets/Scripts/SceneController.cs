@@ -18,6 +18,15 @@ public class SceneController : MonoBehaviour
 
     bool tutorialFlag = true;
 
+    private void OnEnable()
+    {
+        UIManager.OnChangePerspective += Change3d2d;
+    }
+    private void OnDisable()
+    {
+        UIManager.OnChangePerspective -= Change3d2d;
+    }
+
     public void StartLevel()
     {
         camAnim.Play("cam1");
@@ -29,9 +38,9 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void Change3d2d()
     {
-        if (Input.GetKeyDown(KeyCode.Q)&& delaySwitch)
+        if (delaySwitch)
         {
             if (tutorialFlag) { UIManager.INS.AnimTutorialTextOut(); tutorialFlag = false; }
 
@@ -44,7 +53,6 @@ public class SceneController : MonoBehaviour
                SceneOff3D();
 
             switchScene = !switchScene;
-            
         }
     }
 
