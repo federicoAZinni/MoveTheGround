@@ -8,8 +8,27 @@ public class FixedJoystick : Joystick,IPointerDownHandler
 {
     bool ondrag;
 
+    [SerializeReference] Image border1;
+    [SerializeReference] Image handle1;
     private void Update()
     {
+        //    transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //      border1.color = new Color(255, 255, 255, 0.1f);
+        //      handle1.color = new Color(255, 255, 255, 0.1f);
+        //    }
+        //    if (Input.GetMouseButton(0))
+        //        {
+        //            OnDrag(Input.mousePosition);
+        //        }
+
+        //        if (Input.GetMouseButtonUp(0))
+        //        {
+        //            border1.color = new Color(255, 255, 255, 0f);
+        //            handle1.color = new Color(255, 255, 255, 0f);
+        //            base.Repos();
+        //        }
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -17,8 +36,8 @@ public class FixedJoystick : Joystick,IPointerDownHandler
             if (touch.phase == TouchPhase.Began)
             {
                 transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-                UIManager.INS.border1.color = new Color(255, 255, 255, 0.1f);
-                UIManager.INS.handle1.color = new Color(255, 255, 255, 0.1f);
+                border1.color = new Color(255, 255, 255, 0.1f);
+                handle1.color = new Color(255, 255, 255, 0.1f);
             }
 
             if (touch.phase == TouchPhase.Moved)
@@ -28,16 +47,12 @@ public class FixedJoystick : Joystick,IPointerDownHandler
 
             if (touch.phase == TouchPhase.Ended)
             {
-                UIManager.INS.border1.color = new Color(255, 255, 255, 0f);
-                UIManager.INS.handle1.color = new Color(255, 255, 255, 0f);
+                border1.color = new Color(255, 255, 255, 0f);
+                handle1.color = new Color(255, 255, 255, 0f);
                 base.Repos();
             }
         }
+
     }
 
-    public override void OnPointerDown(PointerEventData eventData)
-    {
-        
-    }
-   
 }
