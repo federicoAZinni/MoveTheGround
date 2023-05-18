@@ -11,11 +11,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - post
   - Water
   - UI
   - BG
-  - 
+  - wall
   - 
   - 
   - 
