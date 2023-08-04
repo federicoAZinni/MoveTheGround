@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!blockInputs)
         {
-            moveX = joystick.Horizontal * speed;
-            moveZ = joystick.Vertical * speed;
+            moveX = joystick.Horizontal * speed * Time.fixedDeltaTime;
+            moveZ = joystick.Vertical * speed * Time.fixedDeltaTime;
         }
 
         if (SceneController.switchScene)
@@ -125,13 +125,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if(collision.gameObject.TryGetComponent<Box>(out Box box))
-        //{
-        //    if (!jump)
-        //    {
-        //        DustEffect();
-        //    }
-        //}
+        
         if (collision.gameObject.CompareTag("Ground"))
         {
             jump = true;
@@ -141,5 +135,13 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("fall")) GameManager.INS.LevelFailed();
+
+        if (other.CompareTag("DustParticles"))
+        {
+            if (!jump)
+            {
+                DustEffect();
+            }
+        }
     }
 }

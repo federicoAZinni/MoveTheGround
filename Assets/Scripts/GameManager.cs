@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         LeanTween.delayedCall(1, () => {
             playerController.ReposPlayerLevelStart();
             lvlsList[levelActual].StartLevel();
+            sceneController.SceneOff3D();
         });
     }
     public void LevelWin()

@@ -34,6 +34,8 @@ public class CutoutObject : MonoBehaviour
        
        if(hitObjects.Length>0)
         {
+            ClearListMaterials();
+
             materials.Clear();
 
             for (int i = 0; i < hitObjects.Length; ++i)
@@ -43,23 +45,26 @@ public class CutoutObject : MonoBehaviour
                 for (int m = 0; m < materials.Count; ++m)
                 {
                     materials[m].SetVector("_CutoutPos", new Vector2(0.5f,0.51f));
-                    materials[m].SetFloat("_CutoutSize", 0.08f);
-                    materials[m].SetFloat("_FalloffSize", 0.05f);
+                    materials[m].SetFloat("_CutoutSize", 0.1f);
+                    materials[m].SetFloat("_FalloffSize", 0.1f);
                 }
             }
         }
         else
         {
-            if (materials.Count <= 0) return;
-            foreach (Material item in materials)
-            {
-                item.SetVector("_CutoutPos", new Vector2(0.5f, 0.5f));
-                item.SetFloat("_CutoutSize", 0f);
-                item.SetFloat("_FalloffSize", 0f);
-            }
+            ClearListMaterials();
         }
-       
 
+    }
 
+    void ClearListMaterials()
+    {
+        if (materials.Count <= 0) return;
+        foreach (Material item in materials)
+        {
+            item.SetVector("_CutoutPos", new Vector2(0.5f, 0.5f));
+            item.SetFloat("_CutoutSize", 0f);
+            item.SetFloat("_FalloffSize", 0f);
+        }
     }
 }
