@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour
     float moveX;
     float moveZ;
 
-    bool jump;
+   public bool jump;
 
     bool blockInputs;
+
+    Vector3 lastPos;
 
     private void OnEnable()
     {
@@ -46,7 +48,6 @@ public class PlayerController : MonoBehaviour
         transform.position = GameManager.INS. lvlsList[GameManager.INS.levelActual].startPosPlayerRef.position;
         anim.SetBool("Eat", false);
         blockInputs = false;
-        jump = false;
     }
 
     private void Move()
@@ -63,14 +64,24 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
+    }
+    private void FixedUpdate()
+    {
+        IsGrounded();
+    }
 
-        
+    void IsGrounded()
+    {
+        if (transform.position.y == lastPos.y) jump = true;
+        else jump = false;
+        lastPos = transform.position;
     }
 
     private void Jump()
     {
         if (jump)
         {
+            JumpAnimEvent();
             anim.SetBool("isGround", false);
             anim.SetTrigger("Jump");
             jump = false;
@@ -124,17 +135,15 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        
+    { 
         if (collision.gameObject.CompareTag("Ground"))
         {
-            jump = true;
             anim.SetBool("isGround", true);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("fall")) GameManager.INS.LevelFailed();
+        if (other.CompareTag("fall"))GameManager.INS.LevelFailed();
 
         if (other.CompareTag("DustParticles"))
         {

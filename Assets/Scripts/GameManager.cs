@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public int levelActual;
 
+    public int countFalls;
+
     private void Awake()
     {
         INS = this;
@@ -26,6 +28,16 @@ public class GameManager : MonoBehaviour
             lvlsList[levelActual].StartLevel();
             sceneController.SceneOff3D();
         });
+
+        countFalls++;
+        if(countFalls%2==0)
+        {
+            InterstitialAds.instance.LoadAd();
+        }
+        if (countFalls % 3 == 0)
+        {
+            InterstitialAds.instance.ShowAd();
+        }
     }
     public void LevelWin()
     {

@@ -27,20 +27,18 @@ public class CutoutObject : MonoBehaviour
 
         Vector3 offset = targetObject.position - transform.position;
        
-        
-
-        RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, wallMask);
+        RaycastHit[] hit = Physics.SphereCastAll(transform.position, 0.25f,offset, offset.magnitude, wallMask);
 
        
-       if(hitObjects.Length>0)
+       if(hit.Length>0)
         {
             ClearListMaterials();
 
             materials.Clear();
 
-            for (int i = 0; i < hitObjects.Length; ++i)
+            for (int i = 0; i < hit.Length; ++i)
             {
-                materials.Add(hitObjects[i].transform.GetChild(0).GetComponent<Renderer>().material);
+                materials.Add(hit[i].transform.GetChild(0).GetComponent<Renderer>().material);
 
                 for (int m = 0; m < materials.Count; ++m)
                 {
