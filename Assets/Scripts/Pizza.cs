@@ -19,14 +19,15 @@ public class Pizza : MonoBehaviour
     {
         LeanTween.cancel(gameObject);
         LeanTween.rotateX(gameObject, 0, 1);
-        LeanTween.move(gameObject, GameManager.INS.playerController.refAnimWin.position, 0.5f);
+        PlayerController.player.blockInputs = true;
+        LeanTween.move(gameObject, GameManager.INS.playerController.refAnimWin.position, 0.5f).setOnComplete(()=> { GameManager.INS.LevelWin(); });
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         { 
-            GameManager.INS.LevelWin();
+            
             AnimWin();
         }
     }

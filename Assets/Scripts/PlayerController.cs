@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
+    public static PlayerController player;
 
     [SerializeField] float force;
     [SerializeField] float speed;
@@ -13,15 +14,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject dustParticles;
     [SerializeField] FixedJoystick joystick;
-
+    [SerializeField] Transform refRay;
     float moveX;
     float moveZ;
 
-   public bool jump;
+    public bool jump;
 
-    bool blockInputs;
+    public bool blockInputs;
 
     Vector3 lastPos;
+
+    private void Awake()
+    {
+        player = this;
+    }
 
     private void OnEnable()
     {
@@ -96,11 +102,16 @@ public class PlayerController : MonoBehaviour
     {
         Ray rayo = new Ray();
 
-        rayo.origin = transform.position;
-        rayo.direction = transform.forward;
+        rayo.origin = refRay.position;
+        rayo.direction = refRay.forward;
 
-        if(!Physics.Raycast(rayo, 10))
+        if (Physics.Raycast(rayo, out RaycastHit hit,10)) { Debug.Log(hit.transform.name); }
+        else
+        { 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+            
     }
 
     public void MeshPlayerRot()
@@ -119,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     public void WinAnim()
     {
-        blockInputs = true;
+        
         moveX = 0;
         moveZ = 0;
         LeanTween.delayedCall(0.5f, () => { anim.SetBool("Eat", true); });

@@ -16,7 +16,9 @@ public class UIManager : MonoBehaviour
     public Image handle1;
 
     [SerializeField] Button changePespective;
-    [SerializeField] Text buttonTextPerspective;
+    [SerializeField] Sprite button3d;
+    [SerializeField] Sprite button2d;
+
     bool perspective;
     [SerializeField] Button jump;
 
@@ -28,8 +30,8 @@ public class UIManager : MonoBehaviour
         INS = this;
         changePespective.onClick.AddListener(() => {
             OnChangePerspective?.Invoke();
-            if (perspective) buttonTextPerspective.text = "3D";
-            else buttonTextPerspective.text = "2D";
+            if (perspective) changePespective.image.sprite = button3d;
+            else changePespective.image.sprite = button2d;
             perspective = !perspective;
         });
         jump.onClick.AddListener(() => {
