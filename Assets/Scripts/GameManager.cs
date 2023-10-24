@@ -57,9 +57,7 @@ public class GameManager : MonoBehaviour
 
         if (levelActual >= lvlsList.Length)
         {
-            UIManager.INS.FinalAnim();
             levelActual = 0;
-            return; 
         }
 
         lvlsList[levelActual].gameObject.SetActive(true);

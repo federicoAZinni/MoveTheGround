@@ -136,6 +136,16 @@ public class PlayerController : MonoBehaviour
         LeanTween.delayedCall(0.5f, () => { anim.SetBool("Eat", true); });
     }
 
+    public void StopPlayer()
+    {
+
+        moveX = 0;
+        moveZ = 0;
+
+        rb.velocity = Vector3.zero;
+
+    }
+
     public void DustEffect ()
     {
         dustParticles.SetActive(true);
