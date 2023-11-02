@@ -16,7 +16,6 @@ public class SceneController : MonoBehaviour
 
     bool delaySwitch = true;
 
-    bool tutorialFlag = true;
 
     private void OnEnable()
     {
@@ -42,7 +41,6 @@ public class SceneController : MonoBehaviour
     {
         if (delaySwitch)
         {
-            if (tutorialFlag) { UIManager.INS.AnimTutorialTextOut(); tutorialFlag = false; }
 
             delaySwitch = false;
             LeanTween.delayedCall(0.5f, () => { delaySwitch = true; });
@@ -73,13 +71,14 @@ public class SceneController : MonoBehaviour
     public void SceneOff3D()
     {
         camAnim.Play("cam1");
+        player.ReposPlayer2D();
         LeanTween.delayedCall(0.5f, () =>
          {
              for (int i = 0; i < layersScene.Length; i++)
              {
                  layersScene[i].position = Vector3.zero;
              }
-             player.ReposPlayer2D();
+             
          });
     }
 

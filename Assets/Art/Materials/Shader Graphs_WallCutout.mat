@@ -51,8 +51,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutoutSize: 0
-    - _FalloffSize: 0
+    - _CutoutSize: 0.5
+    - _FalloffSize: 1.5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

@@ -41,18 +41,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         FadeInOut();
-        LeanTween.delayedCall(2, () => { AnimTutorialTextIn(); });
     }
 
-
-    public void AnimTutorialTextOut()
-    {
-        LeanTween.moveLocalY(tutorialText, -500, 2).setEaseInOutBack();
-    }
-    void AnimTutorialTextIn()
-    {
-        LeanTween.moveLocalY(tutorialText, -230, 2).setEaseInOutBack();
-    }
 
     public void FinalAnim()
     {

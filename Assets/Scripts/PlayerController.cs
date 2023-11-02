@@ -109,7 +109,8 @@ public class PlayerController : MonoBehaviour
         else
         { 
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            if(playerMesh.transform.rotation.y>180)  playerMesh.transform.rotation = Quaternion.Euler(0, -90, 0);
+            else playerMesh.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
             
     }
@@ -130,7 +131,6 @@ public class PlayerController : MonoBehaviour
 
     public void WinAnim()
     {
-        
         moveX = 0;
         moveZ = 0;
         LeanTween.delayedCall(0.5f, () => { anim.SetBool("Eat", true); });
@@ -138,12 +138,10 @@ public class PlayerController : MonoBehaviour
 
     public void StopPlayer()
     {
-
         moveX = 0;
         moveZ = 0;
 
         rb.velocity = Vector3.zero;
-
     }
 
     public void DustEffect ()
@@ -160,6 +158,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             anim.SetBool("isGround", true);
+            if (!jump)
+            {
+                DustEffect();
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -168,10 +170,10 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("DustParticles"))
         {
-            if (!jump)
-            {
-                DustEffect();
-            }
+            //if (!jump)
+            //{
+            //    DustEffect();
+            //}
         }
     }
 }
