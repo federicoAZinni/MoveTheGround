@@ -7,8 +7,4 @@ public class EventJump : MonoBehaviour
     // Start is called before the first frame update
     public PlayerController player;
 
-    public void Jump()
-    {
-        player.JumpAnimEvent();
-    }
 }

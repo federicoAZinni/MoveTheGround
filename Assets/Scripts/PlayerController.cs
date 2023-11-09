@@ -78,9 +78,7 @@ public class PlayerController : MonoBehaviour
 
     void IsGrounded()
     {
-        if (transform.position.y == lastPos.y) jump = true;
-        else jump = false;
-        lastPos = transform.position;
+        
     }
 
     private void Jump()
@@ -105,14 +103,19 @@ public class PlayerController : MonoBehaviour
         rayo.origin = refRay.position;
         rayo.direction = refRay.forward;
 
-        if (Physics.Raycast(rayo, out RaycastHit hit,10)) { Debug.Log(hit.transform.name); }
+        if (Physics.Raycast(rayo, out RaycastHit hit, 10)) { Debug.Log(hit.transform.name); }
         else
-        { 
+        {
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            rb.isKinematic = true;
+            LeanTween.delayedCall(0.5f, () => {
+                rb.isKinematic = false;
+            });
             if(playerMesh.transform.rotation.y>180)  playerMesh.transform.rotation = Quaternion.Euler(0, -90, 0);
             else playerMesh.transform.rotation = Quaternion.Euler(0, 90, 0);
         }
-            
+        
+
     }
 
     public void MeshPlayerRot()
@@ -158,10 +161,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             anim.SetBool("isGround", true);
-            if (!jump)
-            {
-                DustEffect();
-            }
+            //if (!jump)
+            //{
+            //    DustEffect();
+            //}
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -170,10 +173,11 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("DustParticles"))
         {
-            //if (!jump)
-            //{
-            //    DustEffect();
-            //}
+            if (!jump)
+            {
+                DustEffect();
+                jump = true;
+            }
         }
     }
 }
