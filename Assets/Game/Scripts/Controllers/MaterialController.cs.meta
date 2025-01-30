@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: da92a1ccfe2bb1d4c8aa344c3a4e0fbf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cinemachineBlenderSettings: {fileID: 11400000, guid: 91f5906b72186dd45a7622e2f2be15b5,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
